@@ -1,5 +1,5 @@
 from torch.autograd import Variable
-import subsequent_mask
+from subsequent_mask import subsequent_mask
 
 
 class Batch:

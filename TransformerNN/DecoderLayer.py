@@ -1,6 +1,6 @@
 import torch.nn as nn
-import clones
-import SublayerConnection
+from clones import clones
+from SublayerConnection import SublayerConnection
 
 class DecoderLayer(nn.Module):
     "Decoder is made of self-attn, src-attn, and feed forward (defined below)"

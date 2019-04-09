@@ -1,5 +1,6 @@
 import torch.nn as nn
 import math
+import torch
 
 
 class Embeddings(nn.Module):
@@ -9,4 +10,5 @@ class Embeddings(nn.Module):
         self.d_model = d_model
 
     def forward(self, x):
+        x = x.type(torch.LongTensor)
         return self.lut(x) * math.sqrt(self.d_model)

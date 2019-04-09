@@ -1,6 +1,6 @@
 import torch.nn as nn
-import clones
-import LayerNorm
+from clones import clones
+from LayerNorm import LayerNorm
 
 
 class Decoder(nn.Module):

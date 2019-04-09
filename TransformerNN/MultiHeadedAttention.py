@@ -1,6 +1,6 @@
 import torch.nn as nn
-import clones
-import attention
+from clones import clones
+from attention import attention
 
 class MultiHeadedAttention(nn.Module):
     def __init__(self, h, d_model, dropout=0.1):

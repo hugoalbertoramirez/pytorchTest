@@ -1,6 +1,6 @@
 import torch.nn as nn
-from Encoder import clones
-import SublayerConnection
+from clones import clones
+from SublayerConnection import SublayerConnection
 
 
 class EncoderLayer(nn.Module):
