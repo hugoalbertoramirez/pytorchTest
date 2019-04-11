@@ -6,3 +6,7 @@ CIFAR10/data/
 TransformerNN/__pycache__/
 
 TransformerNN/Training/__pycache__/
+
+\.idea/
+
+TransformerNN/Training/RealExample/__pycache__/
