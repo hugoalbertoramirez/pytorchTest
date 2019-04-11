@@ -1,11 +1,13 @@
 import time
+import torch
+
 
 def run_epoch(data_iter, model, loss_compute):
     "Standard Training and Logging Function"
     start = time.time()
-    total_tokens = 0
-    total_loss = 0
-    tokens = 0
+    total_tokens = 0.0
+    total_loss = 0.0
+    tokens = 0.0
     for i, batch in enumerate(data_iter):
         out = model.forward(batch.src, batch.trg, batch.src_mask, batch.trg_mask)
         loss = loss_compute(out, batch.trg_y, batch.ntokens)
@@ -14,9 +16,9 @@ def run_epoch(data_iter, model, loss_compute):
         tokens += batch.ntokens
 
         if i % 50 == 1:
+            #time.sleep(1)
             elapsed = time.time() - start
-            print("Epoch Step: %d Loss: %f Tokens per Sec: %f" %
-                    (i, loss / batch.ntokens, tokens / elapsed))
+            print("Epoch Step: %d Loss: %f Tokens per Sec: %f" % (i, loss / batch.ntokens.type(torch.float), tokens.type(torch.float) / elapsed))
             start = time.time()
             tokens = 0
 

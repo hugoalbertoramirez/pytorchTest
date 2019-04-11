@@ -52,8 +52,7 @@ class MultiGPULossCompute:
         if self.opt is not None:
             out_grad = [Variable(torch.cat(og, dim=1)) for og in out_grad]
             o1 = out
-            o2 = nn.parallel.gather(out_grad,
-                                    target_device=self.devices[0])
+            o2 = nn.parallel.gather(out_grad, target_device=self.devices[0])
             o1.backward(gradient=o2)
             self.opt.step()
             self.opt.optimizer.zero_grad()

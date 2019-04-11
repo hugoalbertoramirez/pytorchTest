@@ -30,8 +30,7 @@ if True:
     MAX_LEN = 100
     train, val, test = datasets.IWSLT.splits(
         exts=('.de', '.en'), fields=(SRC, TGT),
-        filter_pred=lambda x: len(vars(x)['src']) <= MAX_LEN and
-            len(vars(x)['trg']) <= MAX_LEN)
+        filter_pred=lambda x: len(vars(x)['src']) <= MAX_LEN and len(vars(x)['trg']) <= MAX_LEN)
     MIN_FREQ = 2
     SRC.build_vocab(train.src, min_freq=MIN_FREQ)
     TGT.build_vocab(train.trg, min_freq=MIN_FREQ)
@@ -54,13 +53,7 @@ if True:
                             repeat=False, sort_key=lambda x: (len(x.src), len(x.trg)),
                             batch_size_fn=batch_size_fn, train=False)
     model_par = nn.DataParallel(model, device_ids=devices)
-    train_iter = MyIterator(train, batch_size=BATCH_SIZE, device=torch.device(0),
-                            repeat=False, sort_key=lambda x: (len(x.src), len(x.trg)),
-                            batch_size_fn=batch_size_fn, train=True)
-    valid_iter = MyIterator(val, batch_size=BATCH_SIZE, device=torch.device(0),
-                            repeat=False, sort_key=lambda x: (len(x.src), len(x.trg)),
-                            batch_size_fn=batch_size_fn, train=False)
-    model_par = nn.DataParallel(model, device_ids=devices)
+
 
 if True:
     model_opt = NoamOpt(model.src_embed[0].d_model, 1, 2000,
